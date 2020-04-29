@@ -48,7 +48,7 @@ class CalcDisplay(object):
             eval_text = eval(self.current_display_text)
             self.current_display_text = str(eval_text)
             display_text_variable.set(str(self.current_display_text))
-            self.current_display_text = ""
+            #self.current_display_text = ""
         except Exception as E:
             display_text_variable.set("Error!")
             pass
