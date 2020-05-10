@@ -2,6 +2,7 @@
 Using the ktinker module of python to write a calculator program
 """
 import tkinter
+import re
 
 window = tkinter.Tk()
 # add a label to the window
@@ -42,14 +43,16 @@ class CalcDisplay(object):
         self.current_display_text += text_to_add
         display_text_variable.set(self.current_display_text)
 
-    # evaluate the expression on the calculator
     def eval(self):
+        #self.answer = eval(re.sub(r"((?<=^)|(?<=[^\.\d]))0+(\d+)", r"\1\2", self.equation.get()))
+
         try:
-            eval_text = eval(self.current_display_text)
+            eval_text = eval(re.sub(r"((?<=^)|(?<=[^\.\d]))0+(\d+)", r"\1\2", self.current_display_text))
+            #eval(self.current_display_text)
             self.current_display_text = str(eval_text)
             display_text_variable.set(str(self.current_display_text))
-            #self.current_display_text = ""
-        except Exception as E:
+            self.current_display_text = ""
+        except Exception as e:
             display_text_variable.set("Error!")
             pass
 
